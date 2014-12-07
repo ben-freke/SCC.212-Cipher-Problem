@@ -9,13 +9,13 @@ class cipherGrid:
     global counter
     
     def __init__ (self):
-        for i in range(66,102,1):
+        for i in range(66,101,1):
             if i > 90:
                 randomData = str(i - 91)
             else:
                 randomData =  str(unichr(i))
             gridChars.insert(0, randomData)
-        self.shuffle()  
+        random.shuffle(gridChars)
         self.createGrid()
     
     def printCipher(self):
@@ -32,8 +32,6 @@ class cipherGrid:
         for i in range(65,71,1):
             for j in range(65,71,1):
                 storeData = gridChars[counter]
-                if (storeData == "10"):
-                    storeData = "1"
                 gridData[(str(unichr(i)) + str(unichr(j)))] = storeData
                 counter = counter - 1
                 

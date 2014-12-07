@@ -9,7 +9,13 @@ stringText = raw_input("Please enter your message:")
 text = cipherText()
 
 if(text.encryptText(stringText, grid)) == True:
-    print ("Message Accepted")
+    keyword = raw_input("Message Accepted. Please enter a keyword:")
+    if (text.parseKeyword(keyword)) == True:
+        print ("Keyword Accepted. Your encrypted message is below.")
+        text.printCipher(2)
+        raw_input("\nPress enter to decrypt.")
+    else:
+        print ("There is an error with your keyword")
 else:
     print ("There is an error with your message")
 
