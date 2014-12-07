@@ -1,4 +1,5 @@
 import random
+import sys
 class cipherGrid:
     
     global gridData
@@ -10,7 +11,7 @@ class cipherGrid:
     def __init__ (self):
         for i in range(66,102,1):
             if i > 90:
-                randomData = i - 91
+                randomData = str(i - 91)
             else:
                 randomData =  str(unichr(i))
             gridChars.insert(0, randomData)
@@ -18,14 +19,22 @@ class cipherGrid:
         self.createGrid()
     
     def printCipher(self):
-        for i in range(36, 0, -1):
-            print gridChars[i]
-      
+        print ("  A  B  C  D  E  F")
+        for i in range(65,71,1):
+            sys.stdout.write(str(unichr(i)) + " ")
+            for j in range(65,71,1):
+                printData = gridData[(str(unichr(i)) + str(unichr(j)))]
+                sys.stdout.write(printData + "  ")
+            print("")   
+                        
     def createGrid(self):
         counter=(len(gridChars))-1
         for i in range(65,71,1):
             for j in range(65,71,1):
-                gridData[(str(unichr(i)) + str(unichr(j)))] = gridChars[counter]
+                storeData = gridChars[counter]
+                if (storeData == "10"):
+                    storeData = "1"
+                gridData[(str(unichr(i)) + str(unichr(j)))] = storeData
                 counter = counter - 1
                 
     def getItem(self, index): 
@@ -45,4 +54,17 @@ class cipherGrid:
             if e == d:
                 continue
             gridChars[d],gridChars[e]=gridChars[e],gridChars[d]
+            
+    def getCipher(self, textString):
+        txtLength = len(textString)
+        textString.split()
+        global encodedMsg
+        encodedMsg = ""
+        for i in range(0, txtLength, 1):
+            if textString[i] != " ":
+                encodedMsg = encodedMsg + (self.searchItem(textString[i]))
+        return encodedMsg
+        
+        
+        
         
