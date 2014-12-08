@@ -45,19 +45,23 @@ class cipherText:
                     counter1 = counter1 + 1
            
             secondPassCipher.sort(cmp=None, key=None, reverse=False)
-            
             secondPassCipher = ([x[2] for x in secondPassCipher])
-
+            
+          
                 
             
             return True
         else:
             return False
-        
-        
+         
     def printCipher(self, passNo):
+        cipher = ""
+        if passNo == 1:
+            for i in range(0, len(firstCipher),1):
+                cipher = cipher + firstCipher[i]
         if passNo == 2:
             for i in range(0, len(secondPassCipher),1):
-                sys.stdout.write(secondPassCipher[i])
+                cipher = cipher + secondPassCipher[i]
+        return cipher       
         
         
